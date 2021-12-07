@@ -13,13 +13,15 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class OrderingCardDelivery {
 
-    String date = LocalDate.now().plusDays(5).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 
     @Test
     public void shouldOrderingCardDelivery() {
         open("http://localhost:9999");
         ElementsCollection lines = $$("[class='input__control']");
         lines.get(0).setValue("Москва");
+        
+        String date = LocalDate.now().plusDays(5).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+
         lines.get(1).doubleClick().sendKeys(Keys.BACK_SPACE);
         lines.get(1).setValue(date);
         lines.get(2).setValue("Иванов Иван");
